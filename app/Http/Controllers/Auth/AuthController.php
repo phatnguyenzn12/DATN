@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -16,24 +20,18 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function register()
-    {
-        return view('auth.register');
-    }
-
     public function handleLogin(Request $request)
     {
+
         if (
             Auth::attempt([
                 'email' => $request->email,
                 'password' => $request->password
             ])
-            && $request->{'g-recaptcha-response'} != null
         ) {
-
             $user = User::where('id', Auth::user()->id)->first();
-
-            if ($user->hasRole('student')) {
+            Auth::login($user);
+            if ($user->type == 3) {
                 return redirect()->route('client')->with('success', 'bạn đăng nhập thành công');
             }
             return redirect()->route('admin');
@@ -98,5 +96,76 @@ class AuthController extends Controller
 
             return redirect()->route('client')->with('success', 'bạn đăng nhập thành công');
         }
+    }
+
+    public function register(Request $request)
+    {
+        $method_route = 'auth.register';
+        if ($request->isMethod('post')) {
+            $params = [];
+            // dd($request->post());
+            $params['cols'] = array_map(function ($item) {
+                if ($item == '') {
+                    $item = null;
+                }
+                if (is_string($item)) {
+                    $item = trim($item);
+                }
+                return $item;
+            }, $request->post());
+            unset($params['cols']['_token'], $params['cols']['re_password']);
+            if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+                $params['cols']['avatar'] = $this->upLoadFile($request->file('avatar'));
+            }
+            $data = array_merge($params['cols'], [
+                'email_verified_at' => now(),
+                'password' => Hash::make($params['cols']['password']),
+                'remember_token' => Str::random(10),
+                'type'=>0,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+            if ($request->post('re_password') != $request->post('password')) {
+                return redirect()->route($method_route)->with('failed', 'Mật khẩu không khớp');
+            } else if ($request->hasFile('avatar') == null) {
+                return redirect()->route($method_route)->with('failed', 'Vui lòng nhập đủ');
+            } else {
+                // dd($data['name']);
+                $users = new User();
+                $res = $users->saveNew($data);
+                $db = DB::table('users')->where('name', 'like', $data['name'])->first();
+                if ($res == null) {
+                    return redirect()->route($method_route);
+                } else if ($res > 0) {
+                    Mail::send('screens.email.actived', compact('db'), function($email) use($db){
+                        $email->subject('Xác minh tài khoản');
+                        $email->to($db->email,$db->name);
+                    });
+                    return redirect()->route('auth.login')->with('success', 'Thêm mới thành công vui lòng xác minh tài khoản');
+                } else {
+                    return redirect()->route($method_route)->with('failed', 'Lỗi thêm mới');
+                }
+            }
+        }
+        return view('auth.register');
+    }
+    public function upLoadFile($file)
+    {
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        return $file->storeAS('images', $fileName, 'public');
+    }
+
+    public function actived($id, $token){
+        $db = new User();
+        $db_user = $db->loadOne($id);
+        if($db_user->remember_token === $token){
+            $db_user = new User();
+            $db_user->active_account($id);
+            return redirect()->route('auth.login')->with('success','Xác minh thành công vui lòng đăng nhập');
+        }
+        else{
+            return redirect()->route('auth.login')->with('failed','Mã xác minh không hợp lệ');
+        }
+        dd($id,$token);
     }
 }
