@@ -19,7 +19,7 @@
                     class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full">
             </div>
 
-            <div class="g-recaptcha" data-sitekey="6LeXMAYiAAAAAH-6JZwbx2GSa8vrgZsUCq7xrUK4"></div>
+            {{-- <div class="g-recaptcha" data-sitekey="6LeXMAYiAAAAAH-6JZwbx2GSa8vrgZsUCq7xrUK4"></div> --}}
 
             <div>
                 <button type="submit" id="sign-in"

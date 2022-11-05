@@ -21,9 +21,9 @@
     <link rel="stylesheet" href="/frontend/assets/css/uikit.css">
     <link rel="stylesheet" href="/frontend/assets/css/style.css">
     <link href="/frontend/libarys/tailwind.min.css" rel="stylesheet">
-
+    
     @yield('head-links')
-
+    
     <style>
         input,
         .bootstrap-select.btn-group button {
