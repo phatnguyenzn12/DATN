@@ -22,4 +22,7 @@ class CommentCourse extends Model
     public function user() {
         return $this->belongsTo(User::class,'user_id','id');
     }
+    public function lesson(){
+        return $this->belongsTo(Course::class,'course_id','id');
+    }
 }
