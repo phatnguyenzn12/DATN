@@ -22,6 +22,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => $email,
+            'type' => 3,
             'email_verified_at' => now(),
             'avatar' => 'placeholder.png',
             'number_phone' => fake()->phoneNumber(),
