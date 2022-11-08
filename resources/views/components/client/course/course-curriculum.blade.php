@@ -12,7 +12,7 @@
                      <ul class="course-curriculum-list mx-2">
                          @foreach ($chapter->lessons as $key2 => $lesson)
                              <li>
-                                 <a href="#" class="flex flex-col">
+                                 <a href="#" class="flex justify-between">
 
                                      <div class="">
                                          <span>Bài {{ $key2 + 1 }}: {{ $lesson->title }}</span>
@@ -28,6 +28,13 @@
                                              </span>
                                          </div>
 
+                                     </div>
+
+                                     <div class="">
+                                         @if ($lesson->lessonVideo->is_demo == 1)
+                                             <button class="button">Học thử</button>
+                                         @else
+                                         @endif
                                      </div>
 
                                  </a>

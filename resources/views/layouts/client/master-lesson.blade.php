@@ -22,6 +22,7 @@
 
     <!-- CSS
     ================================================== -->
+    <link rel="stylesheet" href="/frontend/assets/css/icons.css">
     <link rel="stylesheet" href="/frontend/assets/css/uikit.css">
     <link rel="stylesheet" href="/frontend/assets/css/style.css">
     <link href="/frontend/libarys/tailwind.min.css" rel="stylesheet">
@@ -35,14 +36,14 @@
 
     <!-- Javascript
     ================================================== -->
-    <script src="/frontend/libarys/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/frontend/libarys/uikit.min.js"></script>
     <script src="/frontend/assets/js/uikit.js"></script>
     <script src="/frontend/assets/js/tippy.all.min.js"></script>
     <script src="/frontend/assets/js/simplebar.js"></script>
-    <script src="/frontend/assets/js/custom.js"></script>
-    <script src="/frontend/assets/js/bootstrap-select.min.js"></script>
+
     <script src="/js/var-global.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--Start of Fchat.vn-->

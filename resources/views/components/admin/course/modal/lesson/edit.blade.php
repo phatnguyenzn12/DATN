@@ -26,11 +26,22 @@
     </div>
 
     @if ($lesson->lesson_type == 'video')
-        <div class="form-group">
-            <label>Đường dẫn video</label>
-            <input type="text" name="video" placeholder="https://www.youtube.com/watch?v=sLq57LTJ8VU"
-                value="{{ $lesson->lessonVideo->video_path }}" class="form-control">
+        <div class="form-group" video>
+            <label>Tải video lên</label>
+            <div class="custom-file">
+                <input type="file" name="video_path" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
             <p class="text-danger errors video_url"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Cho học thử</label>
+            <select class="custom-select form-control" name="is_demo">
+                <option @selected($lesson->lessonVideo->is_demo == 0 ? true:false) value="0">Không học thử</option>
+                <option @selected($lesson->lessonVideo->is_demo == 1 ? true:false)  value="1">Học thử</option>
+            </select>
+            <p class="text-danger errors"></p>
         </div>
     @else
         <div class="d-flex align-content-center justify-content-around">

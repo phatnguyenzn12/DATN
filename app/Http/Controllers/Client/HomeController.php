@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-       
+
         $courses = Course::select('*');
         if(auth()->user()){
             $courses_id = auth()->user()->load('courses')->courses->pluck('id')->toArray();
@@ -21,8 +21,8 @@ class HomeController extends Controller
             function (Course $course) {
                 return [
                     ...$course->toArray(),
-                    ...['chapter' => $course->chapters->count()],
-                    ...['lesson' => $course->lessons->count()]
+                    ...['chapter' => $course->with('chapters')->count()],
+                    ...['lesson' => $course->with('lessons')->count()]
                 ];
             }
         )->toJson();

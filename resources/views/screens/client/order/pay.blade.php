@@ -155,7 +155,7 @@
                                                     class="line-clamp-2">{{ $course->title }}</a></h6>
                                             <div class="flex justify-between mt-1"><span
                                                     class="font-medium text-sm text-blue-500">{{ $course->cateCourse->name }}</span><span
-                                                    class="font-bold mt-0.5" products>{{ $course->price }}</span></div>
+                                                    class="font-bold mt-0.5" products>{{ $course->current_Price }}</span></div>
                                         </div>
                                     </div>
                                 </div>

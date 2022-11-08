@@ -130,7 +130,7 @@
     </a>
     <div uk-drop="mode: click" class="dropdown_cart">
         <div class="cart-headline"> Giỏ hàng của bạn
-            <a href="#" class="checkout">Xem các giỏ hàng</a>
+            <a href="{{ route('client.order.cartList') }}" class="checkout">Xem các giỏ hàng</a>
         </div>
         <ul class="dropdown_cart_scrollbar" data-simplebar>
             @forelse ($carts as $cart)

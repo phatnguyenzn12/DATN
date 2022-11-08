@@ -24,9 +24,18 @@ class OrderController extends Controller
     //ngăn chăn id khóa học đã mua
     function addToCart(Course $course)
     {
-        auth()->user()->load(Cart::class)->carts()->firstOrCreate(
-            ['course_id',$course->course_id]
+        Cart::firstOrCreate(
+            [
+                'user_id' =>  auth()->user()->id,
+                'course_id' => $course->id
+            ],
+            [
+                'user_id' =>  auth()->user()->id,
+                'course_id' => $course->id
+            ],
         );
+
+        return redirect()->back()->with('success', 'Thêm giỏ hàng thành công');
     }
 
     function removeCart($id)
@@ -47,7 +56,7 @@ class OrderController extends Controller
         $courses->transform(
             function ($course) {
                 $course->price = $course->current_price;
-                return [...$course->only('price'),...['course_id' => $course->id ]];
+                return [...$course->only('price'), ...['course_id' => $course->id]];
             }
         );
 
