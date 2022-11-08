@@ -90,7 +90,7 @@
                         </div>
                         <!--end::Dropdown-->
                         <!--begin::Button-->
-                        <a href="#" class="btn btn-primary font-weight-bolder">
+                        <a href="{{route('admin.banner.create')}}" class="btn btn-primary font-weight-bolder">
                             <span class="svg-icon svg-icon-md">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

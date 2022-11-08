@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DisscountCode;
 use Illuminate\Http\Request;
 
 class DiscountCodeController extends Controller
@@ -14,7 +15,9 @@ class DiscountCodeController extends Controller
      */
     public function index()
     {
-        //
+        $discounts = DisscountCode::all();
+        // dd($discounts);
+        return view('screens.admin.discount.list', compact('discounts'));
     }
 
     /**
@@ -24,7 +27,7 @@ class DiscountCodeController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
