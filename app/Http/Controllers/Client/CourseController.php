@@ -17,5 +17,6 @@ class CourseController extends Controller
     {
         $comments = $course->commentCourses()->get();
         return view('screens.client.course.intro', compact('course', 'comments'));
+        
     }
 }
