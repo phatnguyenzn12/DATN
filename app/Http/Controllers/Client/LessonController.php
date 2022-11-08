@@ -13,7 +13,7 @@ class LessonController extends Controller
     {
         // if($course->users()->first()->id == auth()->user()->id){
             $chapters = $course->chapters;
-            return view('screens.client.lesson.exercise', compact('course','chapters'));
+            return view('screens.client.lesson.watch', compact('course', 'chapters'));
         // }else {
         //     return redirect()->back();
         // }

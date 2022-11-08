@@ -40,7 +40,8 @@ class BaseSeeder extends Seeder
             if($lesson->lesson_type == 'video') {
                 LessonVideo::create(
                     [
-                        'video_path' => 'https://www.youtube.com/watch?v=oQjcJBGIFsA',
+                        'is_demo' => 0,
+                        'video_path' => '766989834',
                         'lesson_id' => $lesson->id
                     ]
                 );
