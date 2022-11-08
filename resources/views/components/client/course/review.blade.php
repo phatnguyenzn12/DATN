@@ -1,5 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div id="reviews" class="tube-card p-5">
-    <h3 class="text-lg font-semibold mb-3"> Tất cả đánh giá ({{$comments->count()}}) </h3>
+    <h3 class="text-lg font-semibold mb-3"> Tất cả đánh giá ({{count($cou->commentCourses)}}) </h3>
 
     <div class="flex space-x-5 mb-8">
         <div class="lg:w-1/4 w-full">
@@ -83,29 +84,36 @@
     </div>
 
     <div class="space-y-4 my-5">
+        @foreach ($cou->commentCourses as $i)
+        <li>
+            <a href="#">
 
-        @forelse ($comments as $comment)
-            <div class="bg-gray-50 border flex gap-x-4 p-4 relative rounded-md">
-                <img src="/frontend/assets/images/avatars/avatar-4.jpg" alt=""
-                    class="rounded-full shadow w-12 h-12">
-                <div class="flex justify-center items-center absolute right-5 top-6 space-x-1 text-yellow-500">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                </div>
-                <div>
-                    <h4 class="text-base m-0 font-semibold"> {{$comment->user->name}} (Đã tham gia khóa học)</h4>
-                    <span class="text-gray-700 text-sm"> 14th, April 2021 </span>
-                    <p class="mt-3 md:ml-0 -ml-16">
-                        {{$comment->comment}}
+                <div class="drop_content">
+                    <span class="time-ago">{{$i->created_at}}</span>
+                    <p> <strong>{{ DB::table('users')->where('id', '=', $i->user_id)->first()->name }}</strong> <br><i class="fa-solid fa-bullhorn"></i>
+                        <span class="text-link">{{$i->comment}} </span>
                     </p>
+
+                </div>
+            </a>
+        </li>
+        @endforeach
+
+    </div>
+    <div>
+        <form action="{{ route('commentcourse.store') }}" method="post">
+            @csrf
+            <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                <div class="d-flex flex-start w-100">
+                    <input type="hidden" name="course_id" value="{{ $cou->id }}">
+                    <textarea style="border: 1px solid rgba(92, 88, 88, 0.562)" name="comment" id="textAreaExample"
+                        placeholder="Đánh giá khóa học..."></textarea>
+                </div>
+                <div class="float-end mt-2 pt-1">
+                    <button class="btn btn-primary" type="submit">Gửi</button>
                 </div>
             </div>
-        @empty
-        @endforelse
-
+        </form>
     </div>
 
     <div class="flex justify-center mt-9">
