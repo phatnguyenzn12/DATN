@@ -40,7 +40,7 @@
 
                                             <ul class="course-curriculum-list">
                                                 @forelse ($chapter->lessons as $key2 => $lesson)
-                                                    <li>
+                                                    <li onclick="showAjax('{{ route('client.lesson.show',$lesson->id) }}')">
                                                         <a href="#" class="flex flex-col">
                                                             <div class="flex justify-between items-center">
                                                                 <div class="">

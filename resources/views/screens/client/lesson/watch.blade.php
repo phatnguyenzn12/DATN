@@ -44,7 +44,7 @@
 
                       <!--  Overview -->
                       <div class="uk-active">
-                        @include('components    .client.lesson.overview')
+                        @include('components.client.lesson.overview')
                     </div>
 
                     <!--  comment -->
