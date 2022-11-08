@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('course')->name('client.course.')->controller(CourseController::class)->group(
     function () {
-        Route::get('{course1}','show')->name('show')->where([
+        Route::get('{course}','show')->name('show')->where([
             'course1' => '\d+'
         ]);
     }

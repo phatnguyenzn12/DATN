@@ -21,14 +21,15 @@ class HomeController extends Controller
             $k->chapter = $k->chapters->count();
             $k->lesson = $k->lessons->count();
         }
-        //$courses->transform(
-        //     function (Course $course) {
-        //         return [
-        //             // ...$course->toArray(),
-
-        //         ];
-        //     }
-        // )->toJson();
+        $courses->transform(
+            function (Course $course) {
+                return [
+                    ...$course->toArray(),
+                    ...['chapter' => $course->with('chapters')->count()],
+                    ...['lesson' => $course->with('lessons')->count()]
+                ];
+            }
+        )->toJson();
 
         // $courses = json_decode($courses);
 
