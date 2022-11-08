@@ -13,12 +13,9 @@ class CourseController extends Controller
         return view('screens.client.course.list',compact('courses'));
     }
 
-    public function show($course1,Course $course)
+    public function show($slug,Course $course)
     {
-        $cou = Course::find($course1);
-        // dd($cou);
         $comments = $course->commentCourses()->get();
-        // dd($cou->commentCourses);
-        return view('screens.client.course.intro', compact('course', 'comments', 'cou'));
+        return view('screens.client.course.intro', compact('course', 'comments'));
     }
 }
