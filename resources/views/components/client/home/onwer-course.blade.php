@@ -17,7 +17,8 @@
 
                         @forelse($ownerCourse as $course)
                             <li>
-                                <a href="{{ route('client.course.show', ['slug' => $course->slug ,'course' => $course->id]) }}"
+                                                                                         {{-- đổi 'course'-> 'course1' --}}
+                                <a href="{{ route('client.course.show', ['slug' => $course->slug ,'course1' => $course->id]) }}"
                                     class="uk-link-reset">
                                     <div class="card uk-transition-toggle">
                                         <div class="card-media h-40">

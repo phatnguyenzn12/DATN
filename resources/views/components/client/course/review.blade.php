@@ -1,6 +1,8 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div id="reviews" class="tube-card p-5">
-    <h3 class="text-lg font-semibold mb-3"> Tất cả đánh giá ({{count($cou->commentCourses)}}) </h3>
+    <h3 class="text-lg font-semibold mb-3"> Tất cả đánh giá ({{ count($cou->commentCourses) }}) </h3>
 
     <div class="flex space-x-5 mb-8">
         <div class="lg:w-1/4 w-full">
@@ -85,22 +87,33 @@
 
     <div class="space-y-4 my-5">
         @foreach ($cou->commentCourses as $i)
-        <li>
-            <a href="#">
+            <li>
+                <a href="#">
 
-                <div class="drop_content">
-                    <span class="time-ago">{{$i->created_at}}</span>
-                    <p> <strong>{{ DB::table('users')->where('id', '=', $i->user_id)->first()->name }}</strong> <br><i class="fa-solid fa-bullhorn"></i>
-                        <span class="text-link">{{$i->comment}} </span>
-                    </p>
-
+                    <div class="drop_content">
+                        <span class="time-ago">{{ $i->created_at }}</span>
+                        <p> <strong>{{ DB::table('users')->where('id', '=', $i->user_id)->first()->name }}</strong>
+                            <br><i class="fa-solid fa-bullhorn"></i>
+                            <span class="text-link">{{ $i->comment }} </span>
+                        </p>
+                    </div>
+            <li class="flex items-center">
+                <span class="avg bg-yellow-500 mr-2 px-2 rounded text-white font-semiold"> 4.9 </span>
+                <div class="star-rating text-yellow-200">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-half"></ion-icon>
                 </div>
+            </li>
             </a>
-        </li>
+            </li>
         @endforeach
 
     </div>
     <div>
+        {{-- {{ route('commentcourse.store') }} --}}
         <form action="{{ route('commentcourse.store') }}" method="post">
             @csrf
             <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
@@ -117,7 +130,8 @@
     </div>
 
     <div class="flex justify-center mt-9">
-        <a href="#" class="bg-gray-50 border hover:bg-gray-100 px-4 py-1.5 rounded-full text-sm">Xem thêm đánh giá
+        <a href="#" class="bg-gray-50 border hover:bg-gray-100 px-4 py-1.5 rounded-full text-sm">Xem thêm đánh
+            giá
             ..</a>
     </div>
 

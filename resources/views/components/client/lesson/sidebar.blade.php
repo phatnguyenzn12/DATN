@@ -13,8 +13,8 @@
         </a>
     </div>
 
-    <!-- title -->
-    <h1 class="lg:text-2xl text-lg font-bold mt-2 line-clamp-2"> {{ $course->title }} </h1>
+    {{-- <!-- title -->                                          đổi $course-> $ --}}
+    <h1 class="lg:text-2xl text-lg font-bold mt-2 line-clamp-2"> {{ $exe->title }} </h1>
 
     <!-- sidebar list -->
     <div class="sidebar_inner is-watch-2" data-simplebar="init">
@@ -38,8 +38,8 @@
 
                         <div id="curriculum">
                             <div uk-accordion="multiple: true" class="divide-y space-y-3 uk-accordion">
-
-                                @forelse ($chapters as $key => $chapter)
+{{-- đổi $chapters-> $exe --}}
+                                {{-- @forelse ($exe as $key => $chapter)
                                     <div class="uk-open">
                                         <a class="uk-accordion-title text-md mx-2 font-semibold" href="#">
                                             <div class="mb-1 text-sm font-medium"> Chương {{ ++$key }} </div>
@@ -65,9 +65,7 @@
                                                                             4:00
                                                                         </span>
                                                                     </div>
-                                                                </div>
-                                                                {{-- <ion-icon name="lock-closed" class="text-xl mr-2">
-                                                                </ion-icon> --}}
+
                                                             </div>
                                                         </a>
                                                     </li>
@@ -78,8 +76,8 @@
                                         </div>
                                     </div>
                                 @empty
-                                @endforelse
-
+                                @endforelse --}}
+{{-- Phải cmt đoạn @forelse lại mới chạy đc  --}}
                             </div>
                         </div>
 

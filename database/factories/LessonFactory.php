@@ -28,6 +28,7 @@ class LessonFactory extends Factory
             'attachment' => '0',
             'sort' =>  $number++,
             'chapter_id' => rand(1,20)
+
         ];
     }
 }
