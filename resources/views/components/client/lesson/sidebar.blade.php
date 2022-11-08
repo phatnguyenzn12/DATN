@@ -3,11 +3,12 @@
 
     <!-- slide_menu for mobile -->
     <span class="btn-close-mobi right-3 left-auto" uk-toggle="target: #wrapper ; cls: is-active" tabindex="0"
-        aria-expanded="false"></span>
+        aria-expanded="false">
+    </span>
 
     <!-- back to home link -->
     <div class="flex justify-between lg:-ml-1 mt-1 mr-2">
-        <a href="course-intro.html" class="flex items-center text-blue-500">
+        <a href="{{ url()->previous() }}" class="flex items-center text-blue-500">
             <ion-icon name="chevron-back-outline" class="md:text-lg text-2xl"></ion-icon>
             <span class="text-sm md:inline hidden"> back</span>
         </a>
@@ -25,16 +26,6 @@
             <div class="simplebar-mask">
                 <div class="simplebar-offset" style="right: -17px; bottom: 0px;">
                     <div class="simplebar-content" style="padding: 15px; height: 100%; overflow: hidden scroll;">
-
-                        <div class="lg:inline hidden">
-                            <div class="relative overflow-hidden rounded-md bg-gray-200 h-1 mt-4">
-                                <div class="w-2/4 h-full bg-green-500"></div>
-                            </div>
-                            <div class="mt-2 mb-3 text-sm border-b pb-3">
-                                <div> Hoàn thành 46% </div>
-                                <div> Bài học cuối cùng on April 20, 2021</div>
-                            </div>
-                        </div>
 
                         <div id="curriculum">
                             <div uk-accordion="multiple: true" class="divide-y space-y-3 uk-accordion">

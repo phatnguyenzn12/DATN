@@ -34,7 +34,7 @@ class AuthController extends Controller
             if ($user->type == 3) {
                 return redirect()->route('client')->with('success', 'bạn đăng nhập thành công');
             }
-            return redirect()->route('admin');
+            return redirect()->route('admin')->with('success', 'bạn đăng nhập thành công');
         } else {
             return redirect()->route('auth.login')->with('failed', 'bạn đăng nhập thất bại');
         }

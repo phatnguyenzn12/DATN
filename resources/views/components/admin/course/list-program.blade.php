@@ -50,11 +50,9 @@
                                 class="btn btn-text-dark-50 btn-icon-primary font-weight-bold btn-hover-bg-light">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <button type="button"
-                                class="btn btn-text-dark-50 btn-icon-danger font-weight-bold btn-hover-bg-light"
-                                onclick=""
-                                data-toggle="modal" data-target="#modal-example"><i
-                                    class="flaticon-questions-circular-button"></i></button>
+                            <button type="button" class="btn btn-text-warning-50 btn-icon-warning font-weight-bold btn-hover-bg-light">
+                                <i class="flaticon-refresh"></i>
+                            </button>
                             <button form="delete-lesson1"
                                 class="btn btn-text-dark-50 btn-icon-danger font-weight-bold btn-hover-bg-light delete-item">
                                 <i class="fas fa-trash-alt"></i>
