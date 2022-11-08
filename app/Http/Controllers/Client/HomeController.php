@@ -31,7 +31,7 @@ class HomeController extends Controller
             }
         )->toJson();
 
-        // $courses = json_decode($courses);
+        $courses = json_decode($courses);
 
         return view('screens.client.home', compact('courses'));
     }
